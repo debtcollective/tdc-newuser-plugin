@@ -1,2 +1,3 @@
-# tdc-newuser-plugin
-A plugin to extend the new user process in discourse
+# new-user-plugin
+
+A plugin that extends the sign up process for discourse.
