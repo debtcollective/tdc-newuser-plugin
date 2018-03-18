@@ -1,16 +1,18 @@
 <tr class="input">
   <td></td>
   <td class="collective-selectors">
-    <!-- one category per collective -->
     {{#each site.categories as |c|}}
-      <input type="checkbox" name="debt-type" value="{{ c.name }}" id="{{ c.name }}" onchange={{action "collectiveSelected"}}>
-      <label for="{{ c.name }}">{{ c.name }}</label>
+      {{#if (is-collective c.name)}}
+        <input type="checkbox" name="debt-type" value="{{ c.name }}" id="{{ c.name }}" onchange={{ action "collectiveSelected"}}>
+        <label for="{{ c.name }}">{{ c.name }}</label>
+      {{/if}}
     {{/each}}
   </td>
 </tr>
 <tr class="input tds-field {{if isDebtor "tds-visible"}}"><td></td>
   <td>
     <input type="text" name="debt-amount" inputmode='decimal' min='0' id="debt-amount">
+    <span class='required'>*</span>
     <label for="debt-amount">Debt Amount</label>
   </td>
 </tr>
