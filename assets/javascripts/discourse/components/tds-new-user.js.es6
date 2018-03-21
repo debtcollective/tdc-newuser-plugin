@@ -7,7 +7,6 @@ export default Ember.Component.extend({
 
   actions: {
     collectiveSelected(event) {
-
       const elements = $(".collective-selectors input:checked").toArray()
       const collectives = elements.map(element => element.attributes.value.value)
       

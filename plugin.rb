@@ -9,19 +9,6 @@ after_initialize do
   set_up_event_triggers()
 end
 
-# each collective has a correspnding user group (value) and category (key)
-# see seed.js debtsyndicate/discourse-seed
-collectives = {
-  'For Profit Colleges Collective': 'for-profit-colleges',
-  'Student Debt Collective': 'student0debt',
-  'Credit Card Debt Collective': 'credit-card-debt',
-  'Housing Debt Collective': 'housing-debt',
-  'Payday Loans Collective': 'payday-loans',
-  'Auto Loans Collective': 'auto-loans',
-  'Court Fines and Fees Collective': 'court-fines-fees',
-  'Medical Debt Collective': 'medical-debt',
-  'Solidarity Bloc': 'solidarity-bloc' }
-
 def add_custom_user_fields()
   custom_user_fields = {
     'collectives': :list,
@@ -48,6 +35,19 @@ def set_up_event_triggers()
 end
 
 def assign_user_groups(user)
+  # each collective has a correspnding user group (value) and category (key)
+  # see seed.js debtsyndicate/discourse-seed
+  collectives = {
+    'For Profit Colleges Collective': 'for-profit-colleges',
+    'Student Debt Collective': 'student0debt',
+    'Credit Card Debt Collective': 'credit-card-debt',
+    'Housing Debt Collective': 'housing-debt',
+    'Payday Loans Collective': 'payday-loans',
+    'Auto Loans Collective': 'auto-loans',
+    'Court Fines and Fees Collective': 'court-fines-fees',
+    'Medical Debt Collective': 'medical-debt',
+    'Solidarity Bloc': 'solidarity-bloc' }
+
   collectives.each do |category, group|
     if user.custom_fields[collectives].include?(category)
       # the user is in the collective
