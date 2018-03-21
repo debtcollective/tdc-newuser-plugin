@@ -21,7 +21,7 @@ function initializeTdsNewUser(api) {
 
         // persist answers
 
-        this._super()
+        return this._super()
       }
     }
   })

@@ -3,7 +3,7 @@
   <td class="collective-selectors">
     {{#each site.categories as |c|}}
       {{#if (is-collective c.name)}}
-        <input type="checkbox" name="debt-type" value="{{ c.name }}" id="{{ c.name }}" onchange={{ action "collectiveSelected"}}>
+        {{input type="checkbox" name="debt-type" id=c.name change=(action "collectiveSelected") }}
         <label for="{{ c.name }}">{{ c.name }}</label>
       {{/if}}
     {{/each}}
@@ -11,32 +11,32 @@
 </tr>
 <tr class="input tds-field {{if isDebtor "tds-visible"}}"><td></td>
   <td>
-    <input type="text" name="debt-amount" inputmode='decimal' min='0' id="debt-amount">
+    {{input type="text" name="debt-amount" min='0' inputmode='decimal' id="debt-amount"}}
     <span class='required'>*</span>
     <label for="debt-amount">Debt Amount</label>
   </td>
 </tr>
 <tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    <input type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help">
+    {{input type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help"}}
     <label for="solidarity-how-can-you-help">How can you help the debt syndicate?</label>
   </td>
 </tr>
 <tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    <input type="text" name="solidarity-employment" id="solidarity-employment">
+    {{input type="text" name="solidarity-employment" id="solidarity-employment"}}
     <label for="solidarity-employment">Job Title</label>
   </td>
 </tr>
 <tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    <input type="text" name="solidarity-skils" id="solidarity-skills">
+    {{input type="text" name="solidarity-skils" id="solidarity-skills"}}
     <label for="solidarity-skills">Skills/Competencies</label>
   </td>
 </tr>
 <tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    <input type="text" name="phone" id="phone">
+    {{input type="text" name="phone" id="phone"}}
     <label for="phone">Phone Number</label>
   </td>
 </tr>
