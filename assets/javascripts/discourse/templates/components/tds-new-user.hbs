@@ -1,42 +1,52 @@
-<tr class="input">
-  <td></td>
-  <td class="collective-selectors">
-    {{#each site.categories as |c|}}
-      {{#if (is-collective c.name)}}
-        {{input type="checkbox" name="debt-type" id=c.name change=(action "collectiveSelected") }}
-        <label for="{{ c.name }}">{{ c.name }}</label>
-      {{/if}}
-    {{/each}}
+ {{#each site.categories as |c|}} {{#if (is-collective c.name)}}
+<tr class="input collective-selectors">
+  <td class="label">
+    <label for="{{ c.name }}">{{ c.name }}</label>
+  </td>
+  <td>
+    {{input type="checkbox" name="debt-type" id=c.name change=(action "collectiveSelected")}}
   </td>
 </tr>
-<tr class="input tds-field {{if isDebtor "tds-visible"}}"><td></td>
-  <td>
-    {{input type="text" name="debt-amount" min='0' inputmode='decimal' id="debt-amount"}}
-    <span class='required'>*</span>
+{{/if}} {{/each}}
+
+<tr class="input tds-field {{if isDebtor " tds-visible "}}">
+  <td class="label">
     <label for="debt-amount">Debt Amount</label>
   </td>
-</tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    {{input type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help"}}
+    {{input value=store.debtAmount id="debt-amount" name="debtamount"}}
+    <span class='required'>*</span>
+  </td>
+</tr>
+<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+  <td class="label">
     <label for="solidarity-how-can-you-help">How can you help the debt syndicate?</label>
   </td>
-</tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    {{input type="text" name="solidarity-employment" id="solidarity-employment"}}
+    {{input value=store.solidarity.howCanYouHelp type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help"}}
+  </td>
+</tr>
+<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+  <td class="label">
     <label for="solidarity-employment">Job Title</label>
   </td>
-</tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
   <td>
-    {{input type="text" name="solidarity-skils" id="solidarity-skills"}}
-    <label for="solidarity-skills">Skills/Competencies</label>
+    {{input value=store.solidarity.employment type="text" name="solidarity-employment" id="solidarity-employment"}}
   </td>
 </tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}"><td></td>
+<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+  <td class="label">
+    <label for="solidarity-skills">Skills/Competencies</label>
+  </td>
   <td>
-    {{input type="text" name="phone" id="phone"}}
+    {{input value=store.solidarity.skills type="text" name="solidarity-skils" id="solidarity-skills"}}
+  </td>
+</tr>
+<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+  <td class="label">
     <label for="phone">Phone Number</label>
+  </td>
+  <td>
+    {{input value=store.solidarity.phone type="text" name="phone" id="phone"}}
   </td>
 </tr>
