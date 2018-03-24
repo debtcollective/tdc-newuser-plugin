@@ -8,10 +8,10 @@ export default Ember.Component.extend({
   actions: {
     collectiveSelected(event) {
       const elements = $(".collective-selectors input:checked").toArray()
-      const collectives = elements.map(element => element.attributes.id.textContent)
+      this.store.collectives = elements.map(element => element.attributes.id.textContent);
       
-      Ember.set(this, 'isInSolidarity', collectives.includes(solidarity))
-      Ember.set(this, 'isDebtor', collectives.filter(x => x != solidarity).length > 0)
+      Ember.set(this, 'isInSolidarity', this.store.collectives.includes(solidarity));
+      Ember.set(this, 'isDebtor', this.store.collectives.filter(x => x != solidarity).length > 0);
     }
   }
 });
