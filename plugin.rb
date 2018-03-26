@@ -39,7 +39,7 @@ def assign_user_groups(user)
   # see seed.js debtsyndicate/discourse-seed
   collectives = {
     'For Profit Colleges Collective': 'for-profit-colleges',
-    'Student Debt Collective': 'student0debt',
+    'Student Debt Collective': 'student-debt',
     'Credit Card Debt Collective': 'credit-card-debt',
     'Housing Debt Collective': 'housing-debt',
     'Payday Loans Collective': 'payday-loans',
