@@ -3,14 +3,16 @@
 
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { solidarity } from '../constants';
-import { default as computed } from 'ember-addons/ember-computed-decorators';
+import DebtAmountValidation from "../mixins/debt-amount-validation";
 import InputValidation from 'discourse/models/input-validation';
 
 import createAccountController from 'discourse/controllers/create-account';
 
 function initializeTdsNewUser(api) {
-  api.modifyClass('controller:create-account', {
+  
+  api.modifyClass('controller:create-account', DebtAmountValidation);
 
+  api.modifyClass('controller:create-account', {
     submitDisabled: function() {
       const inputs = this.get('store')
 
@@ -33,7 +35,7 @@ function initializeTdsNewUser(api) {
       'passwordRequired', 'nameValidation.failed', 'emailValidation.failed',
       'usernameValidation.failed', 'passwordValidation.failed', 'userFieldsValidation.failed',
       'formSubmitted',
-      // added for the plugin. `submitDisabled` will fire when Ember knows these properties change
+      // added for the plugin. `submitDisabled` knows that it may have changed if these changed
       'store.collectives', 'debtAmountValidation.failed'
     ),
 
@@ -41,34 +43,13 @@ function initializeTdsNewUser(api) {
       return collectives.find(collective => ! collective.includes(solidarity)) !== undefined
     },
 
-    @computed('store.debtAmount')
-    debtAmountValidation() {
-      console.log('INCLASS debt amount validation')
-  
-      const debtAmount = this.get('store.debtAmount')
-
-      if (! isFinite(debtAmount)) {
-        // debtAmount is NaN or infinite
-        return InputValidation.create( { failed: true, reason: 'Must be a finite number.'})
-      }
-
-      if (debtAmount <= 0) {
-        return InputValidation.create( {
-          failed: true,
-          reason: 'Must be a number greater than zero.'})
-      }
-  
-      // Looks good!
-      return InputValidation.create({
-        ok: true
-      });
-    },
-
     actions: {
       createAccount() {
         // validate answers
 
         // persist answers
+        const inputs = this.get('store')
+
 
         return this._super()
       }
