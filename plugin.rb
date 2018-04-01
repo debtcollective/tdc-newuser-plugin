@@ -10,21 +10,17 @@ after_initialize do
 end
 
 def add_custom_user_fields()
-  custom_user_fields = {
-    'collectives': :list,
-    'debt_amount': :bigdecimal,
-    'solidarity_how_can_you_help': :text,
-    'solidarity_employment': :text,
-    'solidarity_skills': :text,
-    'phone': :text }
+  custom_user_fields = ['collectives', 'debt_amount', 'solidarity_how_can_you_help',
+    'solidarity_employment', 'solidarity_skills', 'phone']
 
-  custom_user_fields.each do |field_name, field_type|
-    User.register_custom_field_type(field_name, field_type)
+  custom_user_fields.each do |field_name|
     add_to_serializer(:user, :custom_fields) { user.custom_fields[field_name] }
-  end  
+    DiscoursePluginRegistry.serialized_current_user_fields << field_name
+  end
 end
 
 def set_up_event_triggers()
+
   DiscourseEvent.on(:user_created) do |user|
     assign_user_groups(user)
   end

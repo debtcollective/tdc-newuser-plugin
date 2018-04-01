@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
   debtAmountValidation: function() {
     console.log('inmixin debt amount validation');
 
-    const debtAmount = this.get('store.debtAmount');
+    const debtAmount = this.get('store.customFields.debt_amount');
 
     if (! isFinite(debtAmount)) {
       // debtAmount is NaN or infinite
@@ -23,5 +23,5 @@ export default Ember.Mixin.create({
     return InputValidation.create({
       ok: true
     })
-  }.property('store.debtAmount')
+  }.property('store.customFields.debt_amount')
 })
