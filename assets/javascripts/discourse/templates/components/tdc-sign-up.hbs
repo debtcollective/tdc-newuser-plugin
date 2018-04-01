@@ -9,7 +9,7 @@
 </tr>
 {{/if}} {{/each}}
 
-<tr class="input tds-field {{if isDebtor " tds-visible "}}">
+<tr class="input tdc-field {{if isDebtor " tdc-visible "}}">
   <td class="label">
     <label for="debt-amount">Debt Amount</label>
   </td>
@@ -18,15 +18,15 @@
     &nbsp;{{input-tip validation=debtAmountValidation id="debt-amount-validation"}}
   </td>
 </tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
   <td class="label">
-    <label for="solidarity-how-can-you-help">How can you help the debt syndicate?</label>
+    <label for="solidarity-how-can-you-help">How can you help the debt collective?</label>
   </td>
   <td>
     {{input value=store.customFields.solidarityHowCanYouHelp type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help"}}
   </td>
 </tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
   <td class="label">
     <label for="solidarity-employment">Job Title</label>
   </td>
@@ -34,7 +34,7 @@
     {{input value=store.customFields.solidarityEmployment type="text" name="solidarity-employment" id="solidarity-employment"}}
   </td>
 </tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
   <td class="label">
     <label for="solidarity-skills">Skills/Competencies</label>
   </td>
@@ -42,7 +42,7 @@
     {{input value=store.customFields.solidaritySkills type="text" name="solidarity-skils" id="solidarity-skills"}}
   </td>
 </tr>
-<tr class="input tds-field {{if isInSolidarity 'tds-visible'}}">
+<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
   <td class="label">
     <label for="phone">Phone Number</label>
   </td>

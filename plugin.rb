@@ -1,8 +1,8 @@
-# name: tds-new-user-plugin
+# name: tdc-new-user-plugin
 # about: A plugin to extend the standard discourse new user process for The Debt Collective's purposes (https://github.com/debtcollective/parent/issues/18)
 # version: 0.0.1
 
-register_asset "stylesheets/common/tds-new-user.scss"
+register_asset "stylesheets/common/tdc-new-user.scss"
 
 after_initialize do
   add_custom_user_fields()
@@ -32,7 +32,8 @@ end
 
 def assign_user_groups(user)
   # each collective has a correspnding user group (value) and category (key)
-  # see seed.js debtsyndicate/discourse-seed
+  # see seed.js debtcollective/discourse-seed
+
   collectives = {
     'For Profit Colleges Collective': 'for-profit-colleges',
     'Student Debt Collective': 'student-debt',
