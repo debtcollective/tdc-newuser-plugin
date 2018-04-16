@@ -1,15 +1,17 @@
- {{#each site.categories as |c|}} {{#if (is-collective c.name)}}
+{{#each site.group_names as |group|}}
+{{#if (is-collective group.full_name)}}
 <tr class="input collective-selectors">
   <td class="label">
-    <label for="{{ c.name }}">{{ c.name }}</label>
+    <label for="{{ group.full_name }}">{{ group.full_name }}</label>
   </td>
   <td>
-    {{input type="checkbox" name="debt-type" id=c.name change=(action "collectiveSelected")}}
+    {{input type="checkbox" name="debt-type" id=group.full_name change=(action "collectiveSelected")}}
   </td>
 </tr>
 {{/if}} {{/each}}
 
-<tr class="input tdc-field {{if isDebtor " tdc-visible "}}">
+{{#if isDebtor }}
+<tr class="input">
   <td class="label">
     <label for="debt-amount">Debt Amount</label>
   </td>
@@ -18,7 +20,10 @@
     &nbsp;{{input-tip validation=debtAmountValidation id="debt-amount-validation"}}
   </td>
 </tr>
-<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
+{{/if}}
+
+{{#if isInSolidarity }}
+<tr class="input">
   <td class="label">
     <label for="solidarity-how-can-you-help">How can you help the debt collective?</label>
   </td>
@@ -26,7 +31,7 @@
     {{input value=store.customFields.solidarityHowCanYouHelp type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help"}}
   </td>
 </tr>
-<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
+<tr class="input">
   <td class="label">
     <label for="solidarity-employment">Job Title</label>
   </td>
@@ -34,7 +39,7 @@
     {{input value=store.customFields.solidarityEmployment type="text" name="solidarity-employment" id="solidarity-employment"}}
   </td>
 </tr>
-<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
+<tr class="input">
   <td class="label">
     <label for="solidarity-skills">Skills/Competencies</label>
   </td>
@@ -42,7 +47,7 @@
     {{input value=store.customFields.solidaritySkills type="text" name="solidarity-skils" id="solidarity-skills"}}
   </td>
 </tr>
-<tr class="input tdc-field {{if isInSolidarity 'tdc-visible'}}">
+<tr class="input">
   <td class="label">
     <label for="phone">Phone Number</label>
   </td>
@@ -50,3 +55,4 @@
     {{input value=store.customFields.solidarityPhone type="text" name="phone" id="phone"}}
   </td>
 </tr>
+{{/if}}

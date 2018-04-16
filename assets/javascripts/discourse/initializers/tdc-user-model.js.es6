@@ -12,7 +12,10 @@ import DebtAmountValidation from "../mixins/debt-amount-validation";
 import { solidarity } from '../tdc-utils';
 
 function initializeTdcUser(api) {
-  
+
+  // use this when/if my PR is approved
+  //  api.modifyClass('model:user', opts = { classMethods: true }, changes = {
+
   // based on plugin-api.modifyClass
   const klass = api.container.factoryFor('model:user');
   klass.class.reopenClass({
