@@ -8,12 +8,12 @@ after_initialize do
   add_user_custom_fields()
   set_up_event_triggers()
 
-  add_to_serializer(:site, :group_names) {
-    Group.order(:name).pluck(:name, :full_name).select { |name, full_name| ! full_name.nil? }
-    .map { |name, full_name|
-              {:name => name, :full_name => full_name }
-    }
-  }
+  # make the pretty group names available to the front-end via preload store
+  add_to_serializer(:site, :group_names) do
+    Group.order(:name).pluck(:name, :full_name)
+      .select { |name, full_name| ! full_name.nil? }
+      .map { |name, full_name| {:name => name, :full_name => full_name } }
+  end
 end
 
 def add_user_custom_fields()
