@@ -1,9 +1,11 @@
 import { registerUnbound } from 'discourse-common/lib/helpers';
-import { solidarity } from '../tdc-utils';
+import { solidarityFullName } from '../tdc-utils';
 
 // This is a handlebars helper
 
-export default registerUnbound('is-collective', function(categoryName, options) {
+export default registerUnbound('is-collective', function(name, options) {
+  if (name === undefined) return false
+
   // hacky way of making sure the category is a collective
-  return categoryName.includes('Collective') || categoryName.includes(solidarity)
+  return name.includes('Collective') || name.includes(solidarityFullName)
 });

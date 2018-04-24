@@ -4,7 +4,6 @@ import { default as computed } from 'ember-addons/ember-computed-decorators';
 export default Ember.Mixin.create({
 
   debtAmountValidation: function() {
-    console.log('inmixin debt amount validation');
 
     const debtAmount = this.get('store.customFields.debt_amount');
 

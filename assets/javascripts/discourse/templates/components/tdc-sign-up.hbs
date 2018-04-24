@@ -1,25 +1,23 @@
 {{#each site.group_names as |group|}}
 {{#if (is-collective group.full_name)}}
-<tr class="input collective-selectors">
-  <td class="label">
-    <label for="{{ group.full_name }}">{{ group.full_name }}</label>
-  </td>
-  <td>
-    {{input type="checkbox" name="debt-type" id=group.full_name change=(action "collectiveSelected")}}
-  </td>
-</tr>
+<div class="user-field collective-selectors">
+  <div class="controls">
+    <label for="{{ group.name }}">
+    {{input type="checkbox" name="debt-type" id=group.name change=(action "collectiveSelected")}}
+    {{group.full_name}}
+    </label>
+  </div>
+</div>
 {{/if}} {{/each}}
 
 {{#if isDebtor }}
-<tr class="input">
-  <td class="label">
-    <label for="debt-amount">Debt Amount</label>
-  </td>
-  <td>
+<div class="user-field text">
+    <label for="debt-amount" class="control-label">Debt Amount</label>
+  <div class="controls">
     {{input value=store.customFields.debt_amount id="debt-amount" name="debt-amount" required=isDebtor}}
-    &nbsp;{{input-tip validation=debtAmountValidation id="debt-amount-validation"}}
-  </td>
-</tr>
+ <!--   &nbsp;{{input-tip validation=debtAmountValidation id="debt-amount-validation"}} -->
+  </div>
+</div>
 {{/if}}
 
 {{#if isInSolidarity }}

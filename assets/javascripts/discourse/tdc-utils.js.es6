@@ -1,6 +1,7 @@
-export const solidarity = "Solidarity Bloc";
+export const solidarityFullName = "Solidarity Bloc";
+export const solidarityGroupName = "solidarity-bloc"
 
 export function hasDebt(collectives) {
-  // true if the list of collectives contains a collective that is not solidarity
-  return collectives.filter(x => x != solidarity).length > 0
+  // true if the list of collectives contains a collective that is not solidarityFullName
+  return collectives.filter(x => x != solidarityGroupName).length > 0
 }

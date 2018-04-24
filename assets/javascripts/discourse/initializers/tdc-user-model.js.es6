@@ -9,21 +9,16 @@ import createAccountController from 'discourse/controllers/create-account';
 import User from 'discourse/models/user'
 
 import DebtAmountValidation from "../mixins/debt-amount-validation";
-import { solidarity } from '../tdc-utils';
 
 function initializeTdcUser(api) {
-
   // use this when/if my PR is approved
-  //  api.modifyClass('model:user', opts = { classMethods: true }, changes = {
+  //api.modifyClass('model:user', {
 
   // based on plugin-api.modifyClass
   const klass = api.container.factoryFor('model:user');
   klass.class.reopenClass({
     createAccount(attrs) {
       // the original implementation does not pass on customFields data
-      console.log('new createAccount')
-      console.log(attrs)
-
       let data = {
         name: attrs.accountName,
         email: attrs.accountEmail,
@@ -45,7 +40,7 @@ function initializeTdcUser(api) {
         data.custom_fields = attrs.userFields
         return data
     }
-  });
+  }, { classMethods: true });
 }
 
 export default {

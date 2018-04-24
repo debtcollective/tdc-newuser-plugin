@@ -13,16 +13,16 @@ import DebtAmountValidation from "../mixins/debt-amount-validation";
 import { hasDebt } from '../tdc-utils';
 
 function initializeTdcCreateAccount(api) {
+
   api.modifyClass('controller:create-account', DebtAmountValidation);
 
   api.modifyClass('controller:create-account', {
     submitDisabled: function() {
-      console.log('submitDisabled')
       
       const inputs = this.get('store')
 
       // default constraints must be satisfied
-      //if (this._super()) return true;
+      if (this._super()) return true;
       
       const customFields = this.get('store.customFields')
 
@@ -33,11 +33,8 @@ function initializeTdcCreateAccount(api) {
           return true
       }
 
-      console.log('collectives ok')
-
       // they must provide debt amount if they are not joining only in solidarity
       if (hasDebt(customFields.collectives) && this.get('debtAmountValidation.failed')) {
-        console.log('HAS DEBT AND DEBTVALIDATION FAILED')
         return true;
       }
       // looks good
@@ -48,7 +45,7 @@ function initializeTdcCreateAccount(api) {
       'usernameValidation.failed', 'passwordValidation.failed', 'userFieldsValidation.failed',
       'formSubmitted',
       // added for the plugin. `submitDisabled` knows that it may have changed if these changed
-      'customFields.collectives', 'debtAmountValidation.failed'
+      'store.customFields.collectives', 'debtAmountValidation.failed'
     ),
 
     uglyHackPartOne() {
@@ -74,8 +71,6 @@ function initializeTdcCreateAccount(api) {
 
     actions: {
       async createAccount() {
-        console.log('createAccount')
-
         // persist answers
         this.uglyHackPartOne()
 

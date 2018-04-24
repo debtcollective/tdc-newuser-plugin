@@ -2,8 +2,6 @@
 # about: A plugin to extend the standard discourse new user process for The Debt Collective's purposes (https://github.com/debtcollective/parent/issues/18)
 # version: 0.0.1
 
-register_asset "stylesheets/common/tdc-new-user.scss"
-
 after_initialize do
   add_user_custom_fields()
   set_up_event_triggers()
@@ -51,20 +49,22 @@ end
 def assign_user_groups(user)
   # each collective has a corresponding user group (value) and category (key)
   # see seed.js debtcollective/discourse-seed
+  if user.custom_fields['collectives'].nil?
+    Rails.logger.warn('A user %<username> was created or updated without any collectives!' % {username: user.username})
+    return
+  end
 
-  collectives = {
-    'For Profit Colleges Collective': 'for-profit-colleges',
-    'Student Debt Collective': 'student-debt',
-    'Credit Card Debt Collective': 'credit-card-debt',
-    'Housing Debt Collective': 'housing-debt',
-    'Payday Loans Collective': 'payday-loans',
-    'Auto Loans Collective': 'auto-loans',
-    'Court Fines and Fees Collective': 'court-fines-fees',
-    'Medical Debt Collective': 'medical-debt',
-    'Solidarity Bloc': 'solidarity-bloc' }
-  collectives.each do |category, group_id|
+  if user.custom_fields['collectives'].is_a?(String)
+    # can happen if the user is a member of only one collective
+    user.custom_fields['collectives'] = [ user.custom_fields['collectives'] ]
+  end
+
+  collective_groups = ['for-profit-colleges', 'student-debt', 'credit-card-debt', 'housing-debt',
+    'payday-loans', 'auto-loans', 'court-fines-fees','medical-debt','solidarity-bloc' ]
+
+  collective_groups.each do |group_id|
     group = Group.find(group_id)
-    if user.custom_fields['collectives'].include?(category)
+    if user.custom_fields['collectives'].include?(group_id)
       # the user is in the collective
       group.add(user)
     else # the user is not in the collective
