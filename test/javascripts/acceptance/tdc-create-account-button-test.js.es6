@@ -51,16 +51,7 @@ only("create account modal submit button works correctly", assert => {
   andThen(() => {
     assert.ok(submitButtonEnabled())
   })
-
-  click('.modal-footer .btn-primary')
-
-/*   andThen(() => {
-    console.log('test')
-    const newUser = User.create({username: username}); // await?
-    console.log(newUser)
-    assert.ok(false)
-  }) */
-}); 
+});
 
 const solidarityFieldsAllVisible = function() {
   return ["solidarity-how-can-you-help", "solidarity-employment", "solidarity-skills", "phone"].reduce(

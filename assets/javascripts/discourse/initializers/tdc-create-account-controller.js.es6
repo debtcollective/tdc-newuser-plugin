@@ -6,7 +6,6 @@ import Ember from 'ember';
 import { userPath } from 'discourse/lib/url';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import InputValidation from 'discourse/models/input-validation';
-import createAccountController from 'discourse/controllers/create-account';
 import User from 'discourse/models/user'
 
 import DebtAmountValidation from "../mixins/debt-amount-validation";
@@ -56,7 +55,6 @@ function initializeTdcCreateAccount(api) {
 
       const rawCustomFields = this.get('store.customFields')
 
-
       if (!hasDebt(rawCustomFields.collectives)) {
         delete rawCustomFields.debtAmount // they don't have debt
       }
@@ -76,7 +74,7 @@ function initializeTdcCreateAccount(api) {
 
         await this._super()
       },
-        }
+    }
   });      
 }
 

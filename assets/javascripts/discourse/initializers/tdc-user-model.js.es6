@@ -35,7 +35,8 @@ function initializeTdcUser(api) {
 
     uglyHackPartTwo(data, attrs) {
         // see uglyHackPartOne, in tdc-create-account-controller
-        // we hijacked user_fields to pass customField data instead
+        // we hijacked userFields to pass customField data instead
+        // now we need to move it back to correct place
         data.user_fields = null
         data.custom_fields = attrs.userFields
         return data
