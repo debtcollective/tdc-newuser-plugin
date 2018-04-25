@@ -47,8 +47,6 @@ def set_up_event_triggers()
 end
 
 def assign_user_groups(user)
-  # each collective has a corresponding user group (value) and category (key)
-  # see seed.js debtcollective/discourse-seed
   if user.custom_fields['collectives'].nil?
     Rails.logger.warn('A user %<username> was created or updated without any collectives!' % {username: user.username})
     return
@@ -62,20 +60,20 @@ def assign_user_groups(user)
   collective_groups = ['for-profit-colleges', 'student-debt', 'credit-card-debt', 'housing-debt',
     'payday-loans', 'auto-loans', 'court-fines-fees','medical-debt','solidarity-bloc' ]
 
-  collective_groups.each do |group_id|
-    group = Group.find(group_id)
-    if user.custom_fields['collectives'].include?(group_id)
+  collective_groups.each do |group_name|
+    group = Group.find_by(name: group_name)
+    if user.custom_fields['collectives'].include?(group_name)
       # the user is in the collective
       group.add(user)
     else # the user is not in the collective
       group.remove(user)
     end
 
-    vals = {user: user.username, group_id: group_id}
+    vals = {user: user.username, group_name: group.name}
     if group.save
-      Rails.logger.debug("Successfully updated %<user>s's membership in %<group_id>s" % vals)
+      Rails.logger.debug("Successfully updated %<user>s's membership in %<group_name>s" % vals)
     else
-      Rails.logger.error("Unsuccessful attempt to update %<user>s's membership in %<group_id>s" % vals)
+      Rails.logger.error("Unsuccessful attempt to update %<user>s's membership in %<group_name>s" % vals)
     end
   end
 end
