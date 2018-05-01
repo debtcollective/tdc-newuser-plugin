@@ -9,18 +9,16 @@ export default Ember.Component.extend({
     collectiveSelected(event) {
       // initialize the container for the custom fields
       if (this.get('store.customFields') === undefined) {
-        Ember.set(this, 'store.customFields', {})
-      };
+        Ember.set(this, 'store.customFields', {});
+      }
 
       // store the list of checked collectives in 'customFields.collectives'
-      const elements = $(".collective-selectors input:checked").toArray()
-      
-      Ember.set(this, 'store.customFields.collectives',
-       elements.map(element => element.attributes.id.textContent));
-      
-      this.set('isInSolidarity',
-        this.get('store.customFields.collectives').includes(solidarityGroupName));
+      const elements = $('.collective-selectors input:checked').toArray();
+
+      Ember.set(this, 'store.customFields.collectives', elements.map(element => element.attributes.id.textContent));
+
+      this.set('isInSolidarity', this.get('store.customFields.collectives').includes(solidarityGroupName));
       this.set('isDebtor', hasDebt(this.get('store.customFields.collectives')));
-    }
-  }
+    },
+  },
 });
