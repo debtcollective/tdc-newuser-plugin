@@ -1,0 +1,56 @@
+{{#each site.group_names as |group|}}
+{{#if (is-collective group.full_name)}}
+<div class="user-field collective-selectors">
+  <div class="controls">
+    <label for="{{ group.name }}">
+    {{input type="checkbox" name="debt-type" id=group.name change=(action "collectiveSelected")}}
+    {{group.full_name}}
+    </label>
+  </div>
+</div>
+{{/if}} {{/each}}
+
+{{#if isDebtor }}
+<div class="user-field text">
+    <label for="debt-amount" class="control-label">Debt Amount</label>
+  <div class="controls">
+    {{input value=store.customFields.debt_amount id="debt-amount" name="debt-amount" required=isDebtor}}
+ <!--   &nbsp;{{input-tip validation=debtAmountValidation id="debt-amount-validation"}} -->
+  </div>
+</div>
+{{/if}}
+
+{{#if isInSolidarity }}
+<tr class="input">
+  <td class="label">
+    <label for="solidarity-how-can-you-help">How can you help the debt collective?</label>
+  </td>
+  <td>
+    {{input value=store.customFields.solidarityHowCanYouHelp type="text" name="solidarity-how-can-you-help" id="solidarity-how-can-you-help"}}
+  </td>
+</tr>
+<tr class="input">
+  <td class="label">
+    <label for="solidarity-employment">Job Title</label>
+  </td>
+  <td>
+    {{input value=store.customFields.solidarityEmployment type="text" name="solidarity-employment" id="solidarity-employment"}}
+  </td>
+</tr>
+<tr class="input">
+  <td class="label">
+    <label for="solidarity-skills">Skills/Competencies</label>
+  </td>
+  <td>
+    {{input value=store.customFields.solidaritySkills type="text" name="solidarity-skils" id="solidarity-skills"}}
+  </td>
+</tr>
+<tr class="input">
+  <td class="label">
+    <label for="phone">Phone Number</label>
+  </td>
+  <td>
+    {{input value=store.customFields.solidarityPhone type="text" name="phone" id="phone"}}
+  </td>
+</tr>
+{{/if}}
