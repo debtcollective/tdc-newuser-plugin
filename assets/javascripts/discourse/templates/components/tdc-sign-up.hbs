@@ -4,7 +4,7 @@
   <div class="controls">
     <label for="{{ group.name }}">
     {{input type="checkbox" name="debt-type" id=group.name change=(action "collectiveSelected")}}
-    {{group.full_name}}
+    (name-minus-collective group.full_name)
     </label>
   </div>
 </div>
