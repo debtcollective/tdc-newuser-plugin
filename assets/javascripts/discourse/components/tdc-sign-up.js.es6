@@ -1,9 +1,16 @@
 import { solidarityGroupName, hasDebt } from '../tdc-utils';
 
 export default Ember.Component.extend({
+  tagName: '', // do not wrap in a div
+    
   // isDebtor and isInSolidarity control the visibility of the user fields
   isDebtor: false,
   isInSolidarity: false,
+
+  didRender() {
+    // noCollectives is true if the component found no collective groups
+    this.set('noCollectives', $('.collective-selectors label').length === 0)
+  },
 
   actions: {
     collectiveSelected(event) {
