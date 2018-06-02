@@ -6,14 +6,22 @@ Installs just like any other Discourse plugin: https://meta.discourse.org/t/inst
 
 # Screenshots
 
-The modified create account modal (pre-styling):
+It look alright on base discourse but is really intended to be used with the debt collective theme.
 
-<img alt="modified create account modal" src="https://user-images.githubusercontent.com/1402948/39656736-f4466132-4fb6-11e8-9300-e776b1d8dc39.png" width="720px">
+The modified create account modal:
+
+<img alt="modified create account modal"
+src="https://user-images.githubusercontent.com/1402948/40868443-c9ef12c8-65c1-11e8-90de-2f20c7691681.png"
+width="720px">
 
 After you click on a collective, the debt amount field becomes visible and required:
 
-<img alt="debt amount field" src="https://user-images.githubusercontent.com/1402948/39656737-f46755d6-4fb6-11e8-9f96-a1c4da6c9595.png" width="720px">
+<img alt="debt amount field"
+src="https://user-images.githubusercontent.com/1402948/40868442-c9b26d14-65c1-11e8-8dde-c49ddc5bd1f8.png"
+width="720px">
 
 After you click on the solidarity bloc, additional information fields become visible:
 
-<img alt="solidarity fields" src="https://user-images.githubusercontent.com/1402948/39656738-f4885574-4fb6-11e8-8cc5-00cc8c2f349b.png" width="720px">
+<img alt="solidarity fields"
+src="https://user-images.githubusercontent.com/1402948/40868444-ca07c502-65c1-11e8-9314-a756aeb9f750.png"
+width="720px">
