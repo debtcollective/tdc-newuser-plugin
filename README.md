@@ -6,7 +6,7 @@ Installs just like any other Discourse plugin: https://meta.discourse.org/t/inst
 
 # Screenshots
 
-It look alright on base discourse but is really intended to be used with the debt collective theme.
+It looks alright on base discourse but is really intended to be used with the debt collective theme.
 
 The modified create account modal:
 
