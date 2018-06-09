@@ -25,3 +25,7 @@ After you click on the solidarity bloc, additional information fields become vis
 <img alt="solidarity fields"
 src="https://user-images.githubusercontent.com/1402948/40868444-ca07c502-65c1-11e8-9314-a756aeb9f750.png"
 width="720px">
+
+# Video
+
+![video](https://user-images.githubusercontent.com/1402948/41196983-53f6d9aa-6c03-11e8-9e6e-8df3de1e55c2.gif)
