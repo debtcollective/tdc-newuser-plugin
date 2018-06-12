@@ -11,40 +11,32 @@ import User from 'discourse/models/user';
 import DebtAmountValidation from '../mixins/debt-amount-validation';
 
 function initializeTdcUser(api) {
-  // use this when/if my PR is approved
-  //api.modifyClass('model:user', {
+  api.modifyClassStatic('model:user', {
+    createAccount(attrs) {
+      // the original implementation does not pass on customFields data
+      let data = {
+        name: attrs.accountName,
+        email: attrs.accountEmail,
+        password: attrs.accountPassword,
+        username: attrs.accountUsername,
+        password_confirmation: attrs.accountPasswordConfirm,
+        challenge: attrs.accountChallenge,
+      };
 
-  // based on plugin-api.modifyClass
-  const klass = api.container.factoryFor('model:user');
-  klass.class.reopenClass(
-    {
-      createAccount(attrs) {
-        // the original implementation does not pass on customFields data
-        let data = {
-          name: attrs.accountName,
-          email: attrs.accountEmail,
-          password: attrs.accountPassword,
-          username: attrs.accountUsername,
-          password_confirmation: attrs.accountPasswordConfirm,
-          challenge: attrs.accountChallenge,
-        };
+      data = this.uglyHackPartTwo(data, attrs);
 
-        data = this.uglyHackPartTwo(data, attrs);
-
-        return ajax(userPath(), { data, type: 'POST' });
-      },
-
-      uglyHackPartTwo(data, attrs) {
-        // see uglyHackPartOne, in tdc-create-account-controller
-        // we hijacked userFields to pass customField data instead
-        // now we need to move it back to correct place
-        data.user_fields = null;
-        data.custom_fields = attrs.userFields;
-        return data;
-      },
+      return ajax(userPath(), { data, type: 'POST' });
     },
-    { classMethods: true },
-  );
+
+    uglyHackPartTwo(data, attrs) {
+      // see uglyHackPartOne, in tdc-create-account-controller
+      // we hijacked userFields to pass customField data instead
+      // now we need to move it back to correct place
+      data.user_fields = null;
+      data.custom_fields = attrs.userFields;
+      return data;
+    },
+  });
 }
 
 export default {

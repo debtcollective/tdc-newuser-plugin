@@ -76,11 +76,11 @@ function initializeTdcCreateAccount(api) {
     },
 
     actions: {
-      async createAccount() {
+      createAccount() {
         // persist answers
         this.uglyHackPartOne();
 
-        await this._super();
+        this._super();
       },
     },
   });

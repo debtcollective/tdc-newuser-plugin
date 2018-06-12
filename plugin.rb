@@ -48,7 +48,7 @@ end
 
 def assign_user_groups(user)
   if user.custom_fields['collectives'].nil?
-    Rails.logger.warn('A user %<username> was created or updated without any collectives!' % {username: user.username})
+    Rails.logger.warn('A user #{user.username} was created or updated without any collectives!')
     return
   end
 
